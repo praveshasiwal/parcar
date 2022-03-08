@@ -1,5 +1,8 @@
 package com.hcl.parkar.service;
 
-public class UserService {
+import org.springframework.beans.factory.annotation.Autowired;
 
-}
+public class UserService {
+	
+	@Autowired
+	private UserRepository user
