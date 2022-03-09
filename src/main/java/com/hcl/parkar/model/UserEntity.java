@@ -1,26 +1,37 @@
 package com.hcl.parkar.model;
 
+import javax.persistence.Id;
 import java.io.Serializable;
 
 public class UserEntity implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-	
-	private String Username;
-	private String Password;
-	
-	public String getUsername() {
-		return Username;
+	private Long id;
+	private String userName;
+	private String password;
+	public String getUserName() {
+		return userName;
 	}
-	public void setUsername(String username) {
-		Username = username;
+	public void setUserName(String userName) {
+		this.userName = userName;
 	}
 	public String getPassword() {
-		return Password;
+		return password;
 	}
 	public void setPassword(String password) {
-		Password = password;
+		this.password = password;
 	}
+	public Long getId() {
+		return id;
+	}
+	public void setId(Long id) {
+		this.id = id;
+	}
+	
+	
+	
+	
+	
 	
 
 }

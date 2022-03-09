@@ -1,8 +1,22 @@
 package com.hcl.parkar.service;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import java.util.List;
 
-public class UserService {
+import com.hcl.parkar.model.UserEntity;
+
+public interface UserService {
 	
-	@Autowired
-	private UserRepository user
+		
+		public UserEntity getUserEntity(Long id);
+
+		public List<UserEntity> list();
+
+		public UserEntity save(UserEntity userEntity);
+
+		public UserEntity update(UserEntity userEntity);
+
+		public Boolean delete(Long id);
+
+	}
+
+

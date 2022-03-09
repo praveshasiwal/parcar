@@ -10,8 +10,5 @@ import com.hcl.parkar.service.UserService;
 @Controller
 
 public class UserController {
-   @Autowired
-   public UserService userService;
-	 @RequestMapping(value= "/login", method = RequestMethod.GET)
-	 
+   
 }
