@@ -18,6 +18,8 @@ public class UserEntity {
 	private String firstName;
 	@Column(nullable = false, length = 30)
 	private String lastName;
+	@Column(nullable = false, length = 30)
+	private String username;
 	@Column(nullable = false, unique = true, length = 50)
 	private String email;
 	@Column(nullable = false, length = 10)
@@ -81,5 +83,12 @@ public class UserEntity {
 
 	public void setLicenseId(long licenseid) {
 		this.licenseid = licenseid;
+	}
+	public String getusername() {
+		return username;
+	}
+
+	public void setusername(String username) {
+		this.username = username;
 	}
 }
