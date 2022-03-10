@@ -21,18 +21,18 @@ package com.hcl.parkar.model;
 	@Column(nullable = false, length = 20)
 	private String firstName;
 	@Column(nullable = false, length = 20)
-	private String LastName;
+	private String lastName;
 	@Column(nullable = false, unique = true, length = 45)
-	private String email;
+	private String Email;
 	@Column(nullable = false, length = 10)
-	private int MobileNumber;
+	private int mobileNumber;
 	@Column(nullable = false, length = 64)
-	private String password;
+	private String Password;
 	public String getPassword() {
-	return password;
+	return Password;
 	}
 	public void setPassword(String password) {
-	this.password = password;
+	this.Password = password;
 	}
 	public long getId() {
 	return id;
@@ -47,21 +47,21 @@ package com.hcl.parkar.model;
 	this.firstName = firstName;
 	}
 	public String getLastName() {
-	return LastName;
+	return lastName;
 	}
 	public void setLastName(String lastName) {
-	LastName = lastName;
+	lastName = lastName;
 	}
 	public String getEmail() {
-	return email;
+	return Email;
 	}
 	public void setEmail(String email) {
-	this.email = email;
+	this.Email = email;
 	}
 	public int getMobileNumber() {
-	return MobileNumber;
+	return mobileNumber;
 	}
 	public void setMobileNumber(int mobileNumber) {
-	MobileNumber = mobileNumber;
+	mobileNumber = mobileNumber;
 	}
 	}
