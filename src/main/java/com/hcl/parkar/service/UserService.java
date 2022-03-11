@@ -13,7 +13,7 @@ public interface UserService {
 
 		public UserEntity save(UserEntity userEntity);
 
-		public UserEntity update(UserEntity userEntity);
+		public UserEntity update(String username, UserEntity userEntity);
 
 		public Boolean delete(Long id);
 
