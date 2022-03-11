@@ -39,7 +39,7 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public UserEntity update(UserEntity userEntity) {
 		// TODO Auto-generated method stub
-		if(null != userEntity.getId()) {
+		if(userEntity.getId() !=0) {
 			return userRepository.save(userEntity);
 		}
 		return null;
