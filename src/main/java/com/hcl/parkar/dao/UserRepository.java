@@ -10,8 +10,10 @@ import com.hcl.parkar.model.UserEntity;
 
 @Repository
 	public interface UserRepository extends CrudRepository<UserEntity, Long> {
-	  List<UserEntity> findbyid(String UserName);
-}
+	  List<UserEntity> findbyUserName(String x);
 	  
-		
-
+		public interface UserRepositoryCustom {
+			
+		    public void customMethod();
+		}
+}
