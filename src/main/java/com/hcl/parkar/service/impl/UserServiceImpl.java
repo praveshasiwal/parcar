@@ -51,6 +51,7 @@ public class UserServiceImpl implements UserService {
     			intermidiate.setLastName(userEntity.getLastName());
       			intermidiate.setEmail(userEntity.getEmail());
       			intermidiate.setPassword(userEntity.getPassword());
+      			intermidiate.setLicenseId(userEntity.getlicenseid());
      			return userRepository.save(intermidiate);
     		}
 		}
