@@ -2,6 +2,7 @@ package com.hcl.parkar.controller;
 
 
 
+
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.hcl.parkar.model.UserEntity;
 import com.hcl.parkar.service.UserService;
 
 
@@ -23,43 +25,40 @@ public class UserController {
 	@Autowired
 	private UserService userService;
 
-//	C - Create
-//	R - READ
-//	U - Update
-//	D - DELETE
-	@RequestMapping(value = "", method = RequestMethod.POST, consumes = "application/user", produces = "application/user")
-	public ResponseEntity<User> save(@RequestBody User user) {
-		User userResult = userService.save(user);
-		ResponseEntity<User> responseEntity = new ResponseEntity<User>(userResult, HttpStatus.CREATED);
+
+	@RequestMapping(value = "", method = RequestMethod.POST, consumes = "application/json", produces = "application/json")
+	public ResponseEntity<UserEntity> save(@RequestBody UserEntity user) {
+		UserEntity userResult = userService.save(user);
+		ResponseEntity<UserEntity> responseEntity = new ResponseEntity<UserEntity>(userResult, HttpStatus.CREATED);
 		return responseEntity;
 
 	}
 
-	@RequestMapping(value = "/{Username}", method = RequestMethod.GET, consumes = "application/user", produces = "application/user")
-	public ResponseEntity<User> get(@PathVariable String Username, @RequestBody User user) {
-		User userResult = userService.get(Username);
-		ResponseEntity<User> responseEntity = new ResponseEntity<User>(userResult, HttpStatus.OK);
+	@RequestMapping(value = "/{id}", method = RequestMethod.GET, consumes = "application/json", produces = "application/json")
+	public ResponseEntity<UserEntity> get(@PathVariable int id) {
+		UserEntity userResult = ((List<UserEntity>) userService).get(id);
+		ResponseEntity<UserEntity> responseEntity = new ResponseEntity<UserEntity>(userResult, HttpStatus.OK);
 		return responseEntity;
 	}
 
-	@RequestMapping(value = "/{Password}", method = RequestMethod.POST, consumes = "application/user", produces = "application/user")
-	public ResponseEntity<User> update(@PathVariable String Password, @RequestBody User user) {
-		User userResult = userService.save(user);
-		ResponseEntity<User> responseEntity = new ResponseEntity<User>(userResult, HttpStatus.OK);
+	@RequestMapping(value = "/{}", method = RequestMethod.POST, consumes = "application/json", produces = "application/json")
+	public ResponseEntity<UserEntity> update(@PathVariable String Password, @RequestBody UserEntity user) {
+		UserEntity userResult = userService.save(user);
+		ResponseEntity<UserEntity> responseEntity = new ResponseEntity<UserEntity>(HttpStatus.OK);
 		return responseEntity;
 	}
 
-	@RequestMapping(value = "/{Username}", method = RequestMethod.DELETE, consumes = "application/user", produces = "application/user")
-	public ResponseEntity<Boolean> delete(@PathVariable String Username) {
-		Boolean userResult = userService.delete(Username);
+	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE, consumes = "application/json", produces = "application/json")
+	public ResponseEntity<Boolean> delete(@PathVariable long id) {
+		Boolean userResult = userService.delete(id);
 		ResponseEntity<Boolean> responseEntity = new ResponseEntity<Boolean>(userResult, HttpStatus.OK);
 		return responseEntity;
 	}
 
-	@RequestMapping(value = "", method = RequestMethod.GET, consumes = "application/user", produces = "application/user")
-	public ResponseEntity<List<User>> list() {
-		List<User> userResult = userService.list();
-		ResponseEntity<List<User>> responseEntity = new ResponseEntity<>(userResult, HttpStatus.OK);
+	@RequestMapping(value = "", method = RequestMethod.GET, consumes = "application/json", produces = "application/json")
+	public ResponseEntity<List<UserEntity>> list() {
+		List<UserEntity> userResult = userService.list();
+		ResponseEntity<List<UserEntity>> responseEntity = new ResponseEntity<>(userResult, HttpStatus.OK);
 		return responseEntity;
 	}
 }
