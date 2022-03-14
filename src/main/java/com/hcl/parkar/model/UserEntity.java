@@ -10,9 +10,11 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "users")
 public class UserEntity {
+
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
+	private long id;
 	@Column(nullable = false, length = 30)
 	private String firstName;
 	@Column(nullable = false, length = 30)
@@ -28,19 +30,12 @@ public class UserEntity {
 	@Column(nullable = true, length = 40)
 	private long licenseid;
 
-	public String getPassword() {
-		return password;
-	}
 
-	public void setPassword(String password) {
-		this.password = password;
-	}
-
-	public Long getId() {
+	public long getId() {
 		return id;
 	}
 
-	public void setId(Long id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 
@@ -83,7 +78,6 @@ public class UserEntity {
 	public void setLicenseId(long licenseid) {
 		this.licenseid = licenseid;
 	}
-
 	public String getusername() {
 		return username;
 	}
