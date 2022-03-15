@@ -13,19 +13,21 @@ public class VehicleEntity implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@Column(name = "vehicle_id" , nullable = false, unique = true, length = 30)
-	private int vehicleId;
-	@Column(name = "vehicle_category" , nullable = false, length = 10)
+	@Column(name = "vehicle_number", nullable = false, unique = true, length = 30)
+	private int vehicleNumber;
+	@Column(name = "vehicle_category", nullable = false, length = 10)
 	private String vehicleCategory;
-	@Column(name = "vehicle_city" , nullable = false, length = 50)
+	@Column(name = "vehicle_city", nullable = false, length = 50)
 	private String vehicleCity;
+	@Column(name = "vehicle_State", nullable = false, length = 50)
+	private String vehicleState;
 
-	public int getVehicleId() {
-		return vehicleId;
+	public int getVehicleNumber() {
+		return vehicleNumber;
 	}
 
-	public void setVehicleId(int vehicleId) {
-		this.vehicleId = vehicleId;
+	public void setVehicleNumber(int vehicleNumber) {
+		this.vehicleNumber = vehicleNumber;
 	}
 
 	public String getVehicleCategory() {
@@ -52,13 +54,10 @@ public class VehicleEntity implements Serializable {
 		this.vehicleState = vehicleState;
 	}
 
-	@Column(nullable = false, length = 50)
-	private String vehicleState;
-
 	@Override
 	public String toString() {
-		return "VehicleEntity [vehicleId=" + vehicleId + ", vehicleCategory=" + vehicleCategory + ", vehicleCity="
-				+ vehicleCity + ", vehicleState=" + vehicleState + "]";
+		return "VehicleEntity [vehicleNumber=" + vehicleNumber + ", vehicleCategory=" + vehicleCategory
+				+ ", vehicleCity=" + vehicleCity + ", vehicleState=" + vehicleState + "]";
 	}
 
 }
