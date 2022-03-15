@@ -32,7 +32,7 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public List<UserEntity> list() {
 
-		return userRepository.findAll();
+		return (List<UserEntity>) userRepository.findAll();
 	}
 
 	@Override
@@ -43,17 +43,17 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public UserEntity update(String userName, UserEntity initialUserEntity) {
-        if (initialUserEntity.getUserName() != null) {
-        	Optional<UserEntity> optionalUserEntity = userRepository.findByUserName(userName);
-        	if (optionalUserEntity.isPresent()) {
-        		UserEntity userEntity = optionalUserEntity.get();
-      			userEntity.setFirstName(initialUserEntity.getFirstName());
-    			userEntity.setLastName(initialUserEntity.getLastName());
-      			userEntity.setEmail(initialUserEntity.getEmail());
-      			userEntity.setPassword(initialUserEntity.getPassword());
-      			userEntity.setLicenseId(initialUserEntity.getLicenseId());
-     			return userRepository.save(userEntity);
-    		}
+		if (initialUserEntity.getUserName() != null) {
+			Optional<UserEntity> optionalUserEntity = userRepository.findByUserName(userName);
+			if (optionalUserEntity.isPresent()) {
+				UserEntity userEntity = optionalUserEntity.get();
+				userEntity.setFirstName(initialUserEntity.getFirstName());
+				userEntity.setLastName(initialUserEntity.getLastName());
+				userEntity.setEmail(initialUserEntity.getEmail());
+				userEntity.setPassword(initialUserEntity.getPassword());
+				userEntity.setLicenseId(initialUserEntity.getLicenseId());
+				return userRepository.save(userEntity);
+			}
 		}
 		return null;
 	}
