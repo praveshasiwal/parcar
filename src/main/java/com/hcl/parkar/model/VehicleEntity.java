@@ -1,5 +1,7 @@
 package com.hcl.parkar.model;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -7,52 +9,55 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "vehicle")
-public class VehicleEntity {
+public class VehicleEntity implements Serializable {
+	private static final long serialVersionUID = 1L;
+
 	@Id
-	@Column(nullable = false, unique = true, length = 30)
-	private int vehicleid;
-	@Column(nullable = false, length = 10)
-	private String vehiclecategory;
-	@Column(nullable = false, length = 50)
-	private String vehiclecity;
-	@Column(nullable = false, length = 50)
-	private String vehiclestate;
+	@Column(name = "vehicle_number", nullable = false, length = 30)
+	private int vehicleNumber;
+	@Column(name = "vehicle_category", nullable = false, length = 10)
+	private String vehicleCategory;
+	@Column(name = "vehicle_city", nullable = false, length = 50)
+	private String vehicleCity;
+	@Column(name = "vehicle_State", nullable = false, length = 50)
+	private String vehicleState;
 
-	public int getVehicleid() {
-		return vehicleid;
+	public int getVehicleNumber() {
+		return vehicleNumber;
 	}
 
-	public void setVehicleid(int vehicleid) {
-		this.vehicleid = vehicleid;
+	public void setVehicleNumber(int vehicleNumber) {
+		this.vehicleNumber = vehicleNumber;
 	}
 
-	public String getVehiclecategory() {
-		return vehiclecategory;
+	public String getVehicleCategory() {
+		return vehicleCategory;
 	}
 
-	public void setVehiclecategory(String vehiclecategory) {
-		this.vehiclecategory = vehiclecategory;
+	public void setVehicleCategory(String vehicleCategory) {
+		this.vehicleCategory = vehicleCategory;
 	}
 
-	public String getVehiclecity() {
-		return vehiclecity;
+	public String getVehicleCity() {
+		return vehicleCity;
 	}
 
-	public void setVehiclecity(String vehiclecity) {
-		this.vehiclecity = vehiclecity;
+	public void setVehicleCity(String vehicleCity) {
+		this.vehicleCity = vehicleCity;
 	}
 
-	public String getVehiclestate() {
-		return vehiclestate;
+	public String getVehicleState() {
+		return vehicleState;
 	}
 
-	public void setVehiclestate(String vehiclestate) {
-		this.vehiclestate = vehiclestate;
+	public void setVehicleState(String vehicleState) {
+		this.vehicleState = vehicleState;
 	}
 
 	@Override
 	public String toString() {
-		return "VehicleEntity [vehicleid=" + vehicleid + ", vehiclecategory=" + vehiclecategory + ", vehiclecity="
-				+ vehiclecity + ", vehiclestate=" + vehiclestate + "]";
+		return "VehicleEntity [vehicleNumber=" + vehicleNumber + ", vehicleCategory=" + vehicleCategory
+				+ ", vehicleCity=" + vehicleCity + ", vehicleState=" + vehicleState + "]";
 	}
+
 }

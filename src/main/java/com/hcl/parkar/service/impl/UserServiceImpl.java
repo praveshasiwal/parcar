@@ -42,17 +42,17 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public UserEntity update(String username, UserEntity userEntity) {
-        if (userEntity.getusername() != null) {
-        	Optional<UserEntity> optional = userRepository.findByUserName(username);
-        	if (optional.isPresent()) {
-        		UserEntity intermidiate = optional.get();
-      			intermidiate.setFirstName(userEntity.getFirstName());
-    			intermidiate.setLastName(userEntity.getLastName());
-      			intermidiate.setEmail(userEntity.getEmail());
-      			intermidiate.setPassword(userEntity.getPassword());
-      			intermidiate.setLicenseId(userEntity.getlicenseid());
-     			return userRepository.save(intermidiate);
+	public UserEntity update(String userName, UserEntity initialUserEntity) {
+        if (initialUserEntity.getUserName() != null) {
+        	Optional<UserEntity> optionalUserEntity = userRepository.findByUserName(userName);
+        	if (optionalUserEntity.isPresent()) {
+        		UserEntity userEntity = optionalUserEntity.get();
+      			userEntity.setFirstName(initialUserEntity.getFirstName());
+    			userEntity.setLastName(initialUserEntity.getLastName());
+      			userEntity.setEmail(initialUserEntity.getEmail());
+      			userEntity.setPassword(initialUserEntity.getPassword());
+      			userEntity.setLicenseId(initialUserEntity.getLicenseId());
+     			return userRepository.save(userEntity);
     		}
 		}
 		return null;
