@@ -20,7 +20,7 @@ public class UserEntity implements Serializable {
     private String lastName;
     @Column(name = "user_name", nullable = false, length = 30)
     private String userName;
-    @Column(name = "email", nullable = false, length = 50)
+    @Column(name = "email", length = 50)
     private String email;
     @Column(name = "mobile_number", nullable = false, length = 20)
     private int mobileNumber;
@@ -28,12 +28,6 @@ public class UserEntity implements Serializable {
     private String password;
     @Column(name = "license_id", nullable = true, length = 40)
     private long licenseId;
-    public String getPassword() {
-        return password;
-    }
-    public void setPassword(String password) {
-        this.password = password;
-    }
     public long getId() {
         return id;
     }
@@ -52,6 +46,12 @@ public class UserEntity implements Serializable {
     public void setLastName(String lastName) {
         this.lastName = lastName;
     }
+    public String getUserName() {
+        return userName;
+    }
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
     public String getEmail() {
         return email;
     }
@@ -64,17 +64,17 @@ public class UserEntity implements Serializable {
     public void setMobileNumber(int mobileNumber) {
         this.mobileNumber = mobileNumber;
     }
-    public long getlicenseId() {
+    public String getPassword() {
+        return password;
+    }
+    public void setPassword(String password) {
+        this.password = password;
+    }
+    public long getLicenseId() {
         return licenseId;
     }
-    public void setlicenseId(long licenseId) {
+    public void setLicenseId(long licenseId) {
         this.licenseId = licenseId;
-    }
-    public String getuserName() {
-        return userName;
-    }
-    public void setuserName(String userName) {
-        this.userName = userName;
     }
     @Override
     public String toString() {
