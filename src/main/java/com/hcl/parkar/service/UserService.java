@@ -5,18 +5,15 @@ import java.util.List;
 import com.hcl.parkar.model.UserEntity;
 
 public interface UserService {
-	
-		
-		public UserEntity getUserEntity(Long id);
 
-		public List<UserEntity> list();
+	public UserEntity getUserEntity(Long id);
 
-		public UserEntity save(UserEntity userEntity);
+	public List<UserEntity> list();
 
-		public UserEntity update(String username, UserEntity userEntity);
+	public UserEntity save(UserEntity userEntity);
 
-		public Boolean delete(Long id);
+	public UserEntity update(String username, UserEntity userEntity);
 
-	}
+	public Boolean delete(Long id);
 
-
+}
