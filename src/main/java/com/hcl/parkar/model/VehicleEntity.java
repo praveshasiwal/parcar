@@ -13,7 +13,7 @@ public class VehicleEntity implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@Column(name = "vehicle_number", nullable = false, unique = true, length = 30)
+	@Column(name = "vehicle_number", nullable = false, length = 30)
 	private int vehicleNumber;
 	@Column(name = "vehicle_category", nullable = false, length = 10)
 	private String vehicleCategory;

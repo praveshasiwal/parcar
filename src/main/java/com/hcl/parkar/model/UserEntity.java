@@ -21,9 +21,11 @@ public class UserEntity implements Serializable {
 	private String firstName;
 	@Column(name = "last_name", nullable = false, length = 30)
 	private String lastName;
-	@Column(name = "user_name", nullable = false, length = 30)
+
+	@Column(nullable = false, length = 30)
 	private String userName;
-	@Column(name = "email", length = 50)
+	@Column(nullable = false, unique = true, length = 50)
+
 	private String email;
 	@Column(name = "mobile_number", nullable = false, length = 20)
 	private int mobileNumber;
@@ -102,4 +104,5 @@ public class UserEntity implements Serializable {
 				+ ", email=" + email + ", mobileNumber=" + mobileNumber + ", password=" + password + ", licenseId="
 				+ licenseId + "]";
 	}
+	
 }
