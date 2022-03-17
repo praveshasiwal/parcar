@@ -29,7 +29,7 @@ import com.hcl.parkar.model.UserEntity;
 import com.hcl.parkar.service.UserService;
 
 @Controller
-@RequestMapping("/v1/api/user")
+@RequestMapping("v1/api/user")
 public class UserController {
 	@Autowired
 	private UserService userService;

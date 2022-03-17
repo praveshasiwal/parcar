@@ -4,6 +4,8 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+
+import com.hcl.parkar.dao.VehicleRepository;
 import com.hcl.parkar.model.VehicleEntity;
 import com.hcl.parkar.service.VehicleService;
 
@@ -16,8 +18,8 @@ public class VehicleServiceImpl implements VehicleService {
 
 		if (0 != vehicleNumber) {
 			Optional<VehicleEntity> vehicleEntity = vehicleRepository.findByVehicleNumber(vehicleNumber);
-			if (vehicleRepository.isPresent()) {
-				return vehicleRepository.get();
+			if (vehicleEntity.isPresent()) {
+				return vehicleEntity.get();
 			}
 		}
 		return null;
@@ -40,7 +42,7 @@ public class VehicleServiceImpl implements VehicleService {
 		if (initialVehicleEntity.getVehicleNumber() != 0) {
 			Optional<VehicleEntity> optionalVehicleEntity = vehicleRepository.findByVehicleNumber(vehicleNumber);
 			if (optionalVehicleEntity.isPresent()) {
-				VehicleEntity vehicleEntity = initialVehicleEntity.get();
+				VehicleEntity vehicleEntity = optionalVehicleEntity.get();
 				vehicleEntity.setVehicleNumber(initialVehicleEntity.getVehicleNumber());
 				vehicleEntity.setVehicleCategory(initialVehicleEntity.getVehicleCategory());
 				vehicleEntity.setVehicleCity(initialVehicleEntity.getVehicleCity());
@@ -58,7 +60,7 @@ public class VehicleServiceImpl implements VehicleService {
 			Optional<VehicleEntity> vehicleEntity = vehicleRepository.findByVehicleNumber(vehicleNumber);
 
 			if (vehicleEntity.isPresent()) {
-				vehicleRepository.deleteByVehicleNumber(vehicleNumber);
+				vehicleRepository.delete(vehicleEntity.get());
 				return true;
 			}
 		}
