@@ -37,7 +37,7 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public UserEntity save(UserEntity userEntity) {
-
+        userEntity.setUserName(String.valueOf(userEntity.getMobileNumber()));
 		return userRepository.save(userEntity);
 	}
 

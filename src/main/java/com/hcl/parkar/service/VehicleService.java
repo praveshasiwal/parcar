@@ -1,8 +1,6 @@
 package com.hcl.parkar.service;
 
 import java.util.List;
-
-import com.hcl.parkar.model.UserEntity;
 import com.hcl.parkar.model.VehicleEntity;
 
 public interface VehicleService {

@@ -26,7 +26,7 @@ public class UserEntity implements Serializable {
 	@Column(name = "email", length = 50)
 	private String email;
 	@Column(name = "mobile_number", nullable = false, length = 20)
-	private int mobileNumber;
+	private Long mobileNumber;
 	@Column(name = "password", nullable = false, length = 15)
 	private String password;
 	@Column(name = "license_id", nullable = true, length = 40)
@@ -72,11 +72,11 @@ public class UserEntity implements Serializable {
 		this.email = email;
 	}
 
-	public int getMobileNumber() {
+	public Long getMobileNumber() {
 		return mobileNumber;
 	}
 
-	public void setMobileNumber(int mobileNumber) {
+	public void setMobileNumber(Long mobileNumber) {
 		this.mobileNumber = mobileNumber;
 	}
 
