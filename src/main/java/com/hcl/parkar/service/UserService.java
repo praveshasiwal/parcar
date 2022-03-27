@@ -1,5 +1,19 @@
 package com.hcl.parkar.service;
 
-public class UserService {
+import java.util.List;
+
+import com.hcl.parkar.model.UserEntity;
+
+public interface UserService {
+
+	public UserEntity getUserEntity(Long id);
+
+	public List<UserEntity> list();
+
+	public UserEntity save(UserEntity userEntity);
+
+	public UserEntity update(String username, UserEntity userEntity);
+
+	public Boolean delete(Long id);
 
 }

@@ -1,10 +1,11 @@
 package com.hcl.parkar.model;
 
 import java.io.Serializable;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -19,8 +20,12 @@ public class VehicleEntity implements Serializable {
 	private String vehicleCategory;
 	@Column(name = "vehicle_city", nullable = false, length = 50)
 	private String vehicleCity;
-	@Column(name = "vehicle_State", nullable = false, length = 50)
+	@Column(name = "vehicle_state", nullable = false, length = 50)
 	private String vehicleState;
+
+	@ManyToOne
+	@JoinColumn(name = "userId")
+	private UserEntity user;
 
 	public int getVehicleNumber() {
 		return vehicleNumber;
