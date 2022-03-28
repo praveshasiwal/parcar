@@ -2,12 +2,15 @@ package com.hcl.parkar.controller;
 
 import java.util.List;
 
+import org.apache.tomcat.util.net.openssl.ciphers.Authentication;
+import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.security.SecurityProperties.User;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -54,4 +57,13 @@ public class UserController {
 		ResponseEntity<List<UserEntity>> responseEntity = new ResponseEntity<>(userResults, HttpStatus.OK);
 		return responseEntity;
 	}
+	@PostMapping("/signin")
+    public ResponseEntity<String> authenticateUser(@RequestBody UserEntity userEntity){
+        Authentication authentication = authenticationManager.authenticate(new UserNamePasswordAuthenticationToken(
+        		userEntity.getUserName(), userEntity.getPassword()));
+
+        SecurityContextHolder.getContext().setAuthentication(authentication);
+        return new ResponseEntity<>("User signed-in successfully!.", HttpStatus.OK);
+    }
 }
+
