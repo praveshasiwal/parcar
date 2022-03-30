@@ -31,9 +31,7 @@ public class BookingEntity implements Serializable {
 	@Column(name = "duration", nullable = false, length = 15)
 	private int duration;
 
-	@Column(name = "booking_date", nullable = false, length = 15)
-	private Date bookingDate;
-
+	
 	enum BookingStatus {
 		Inprogress, Completed;
 	}
@@ -73,12 +71,6 @@ public class BookingEntity implements Serializable {
 		this.duration = duration;
 	}
 
-	public Date getBookingDate() {
-		return bookingDate;
-	}
-
-	public void setBookingDate(Date bookingDate) {
-		this.bookingDate = bookingDate;
-	}
+	
 
 }
