@@ -19,7 +19,6 @@ public class SlotEntity implements Serializable {
 	private static final long serialVersionUID = 1L;
 	@Autowired
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "slot_number", nullable = false, length = 50)
 	private String slotNumber;
 	@Column(name = "slot_type", nullable = false, length = 50)

@@ -13,11 +13,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.hcl.parkar.model.SlotEntity;
 import com.hcl.parkar.service.SlotService;
 
-public class SlotController {
+
 
 	@Controller
 	@RequestMapping("v1/api/slot")
-	public class VehicleController {
+	public class SlotController {
 		@Autowired
 		private SlotService slotService;
 
@@ -58,4 +58,3 @@ public class SlotController {
 		}
 
 	}
-}

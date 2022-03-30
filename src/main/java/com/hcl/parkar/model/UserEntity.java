@@ -8,6 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
@@ -16,7 +17,6 @@ import javax.persistence.UniqueConstraint;
 @Table(name = "users", uniqueConstraints = @UniqueConstraint(columnNames = { "email" }))
 public class UserEntity implements Serializable {
 	private static final long serialVersionUID = 1L;
-
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
@@ -34,6 +34,13 @@ public class UserEntity implements Serializable {
 	private String password;
 	@Column(name = "license_id", nullable = true, length = 40)
 	private long licenseId;
+	@ManyToMany(mappedBy = "users")
+	private List<VehicleEntity> vehicleList = new ArrayList<VehicleEntity>();
+	
+	@OneToMany(mappedBy = "userEntity")
+	private List<VehicleEntity> vehicleList = new ArrayList<VehicleEntity>();
+	
+	private VehicleEntity vehicleEntity;
 
 	public long getId() {
 		return id;
@@ -84,26 +91,13 @@ public class UserEntity implements Serializable {
 	}
 
 	public String getPassword() {
-		return password;
-	}
-
-	public void setPassword(String password) {
-		this.password = password;
-	}
-
-	public long getLicenseId() {
-		return licenseId;
-	}
-
-	public void setLicenseId(long licenseId) {
-		this.licenseId = licenseId;
-	}
+        return password;
+    }
 
 	@Override
 	public String toString() {
 		return "UserEntity [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", userName=" + userName
 				+ ", email=" + email + ", mobileNumber=" + mobileNumber + ", password=" + password + ", licenseId="
-				+ licenseId + "]";
+				+ licenseId + ", vehicleList=" + vehicleList + ", vehicleEntity=" + vehicleEntity + "]";
 	}
-
-}
+	}
