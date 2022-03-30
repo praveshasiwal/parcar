@@ -29,16 +29,14 @@ public class VehicleEntity implements Serializable {
 	@Column(name = "vehicle_State", nullable = false, length = 50)
 	private String vehicleState;
 	
-//    @ManyToMany
-//    @JoinTable(name="VEHICLE_USER", joinColumns = {@JoinColumn(name = "vehicle_number")}, inverseJoinColumns = {@JoinColumn(name = "user_id")})
-//	private List<UserEntity> users = new ArrayList<>();
+
 
 	@ManyToOne
 	@JoinColumn(name= "User_ID")
 	private UserEntity userEntity;
 
 	@OneToOne
-	private BookingEntity bookings;
+	private BookingEntity booking;
 	
 	public int getVehicleNumber() {
 		return vehicleNumber;
@@ -72,28 +70,12 @@ public class VehicleEntity implements Serializable {
 		this.vehicleState = vehicleState;
 	}
 
-//	public List<UserEntity> getUsers() {
-//		return users;
-//	}
-//
-//	public void setUsers(List<UserEntity> users) {
-//		this.users = users;
-//	}
-	
-//	public UserEntity getUserEntity() {
-//		return userEntity;
-//	}
-//	
-//	public void setUserEntity(UserEntity userEntity) {
-//		this.userEntity = userEntity;
-//	}
-	
-	public BookingEntity getBookings() {
-		return bookings;
+	public BookingEntity getBooking() {
+		return booking;
 	}
 	
-	public void setBookings(BookingEntity bookings) {
-		this.bookings = bookings;
+	public void setBookings(BookingEntity booking) {
+		this.booking = booking;
 	}
 	
 	@Override
