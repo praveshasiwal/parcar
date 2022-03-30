@@ -3,6 +3,8 @@ package com.hcl.parkar.service.impl;
 import java.util.List;
 import java.util.Optional;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,6 +17,7 @@ public class VehicleServiceImpl implements VehicleService {
 	private VehicleRepository vehicleRepository;
 
 	@Override
+	@Transactional
 	public VehicleEntity getVehicleEntity(int vehicleNumber) {
 
 		if (0 != vehicleNumber) {
@@ -27,18 +30,21 @@ public class VehicleServiceImpl implements VehicleService {
 	}
 
 	@Override
+	@Transactional
 	public List<VehicleEntity> list() {
 
 		return (List<VehicleEntity>) vehicleRepository.findAll();
 	}
 
 	@Override
+	@Transactional
 	public VehicleEntity save(VehicleEntity vehicleEntity) {
 
 		return vehicleRepository.save(vehicleEntity);
 	}
 
 	@Override
+	@Transactional
 	public VehicleEntity update(int vehicleNumber, VehicleEntity initialVehicleEntity) {
 		if (initialVehicleEntity.getVehicleNumber() != 0) {
 			Optional<VehicleEntity> optionalVehicleEntity = vehicleRepository.findByVehicleNumber(vehicleNumber);
@@ -56,6 +62,7 @@ public class VehicleServiceImpl implements VehicleService {
 	}
 
 	@Override
+	@Transactional
 	public Boolean delete(int vehicleNumber) {
 		if (0 != vehicleNumber) {
 			Optional<VehicleEntity> vehicleEntity = vehicleRepository.findByVehicleNumber(vehicleNumber);

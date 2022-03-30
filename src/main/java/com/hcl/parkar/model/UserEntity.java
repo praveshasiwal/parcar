@@ -1,11 +1,16 @@
 package com.hcl.parkar.model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
@@ -31,8 +36,16 @@ public class UserEntity implements Serializable {
 	private String password;
 	@Column(name = "license_id", nullable = true, length = 40)
 	private long licenseId;
+	
+//    @ManyToMany(mappedBy = "users")
+//	private List<VehicleEntity> vehicleList = new ArrayList<VehicleEntity>(); 
+	
+@OneToMany(mappedBy = "userEntity")
+ private List<VehicleEntity> vehicleList = new ArrayList<VehicleEntity>();
 
-	public long getId() {
+//	private VehicleEntity vehicleEntity;
+
+ public long getId() {
 		return id;
 	}
 
@@ -96,10 +109,20 @@ public class UserEntity implements Serializable {
 		this.licenseId = licenseId;
 	}
 
+	
+//	public VehicleEntity getVehicleEntity() {
+//		return vehicleEntity;
+//	}
+//	
+//	public void setVehicleEntity(VehicleEntity vehicleEntity) {
+//		this.vehicleEntity = vehicleEntity;
+//	}
+
 	@Override
 	public String toString() {
 		return "UserEntity [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", userName=" + userName
 				+ ", email=" + email + ", mobileNumber=" + mobileNumber + ", password=" + password + ", licenseId="
 				+ licenseId + "]";
 	}
+
 }
