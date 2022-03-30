@@ -19,6 +19,7 @@ public class BookingServiceImpl implements BookingService {
 	private BookingRepository bookingRepository;
 
 	@Override
+	@Transactional
 	public BookingEntity getBookingEntity(int bookingId) {
 
 		if (0 != bookingId) {
@@ -31,18 +32,20 @@ public class BookingServiceImpl implements BookingService {
 	}
 
 	@Override
+	@Transactional
 	public List<BookingEntity> list() {
 
 		return (List<BookingEntity>) bookingRepository.findAll();
 	}
 
 	@Override
+	@Transactional
 	public BookingEntity save(BookingEntity bookingEntity) {
 
 		return bookingRepository.save(bookingEntity);
 	}
-
 	@Override
+	@Transactional
 	public BookingEntity update(int bookingId, BookingEntity initialBookingEntity) {
 		if (initialBookingEntity.getBookingId() != 0) {
 			Optional<BookingEntity> optionalBookingEntity = bookingRepository.findById(bookingId);
@@ -50,7 +53,7 @@ public class BookingServiceImpl implements BookingService {
 				BookingEntity bookingEntity = optionalBookingEntity.get();
 				bookingEntity.setStartTime(initialBookingEntity.getStartTime());
 				bookingEntity.setEndTime(initialBookingEntity.getEndTime());
-				bookingEntity.setBookingDate(initialBookingEntity.getBookingDate());
+				
 
 				return bookingRepository.save(bookingEntity);
 			}
