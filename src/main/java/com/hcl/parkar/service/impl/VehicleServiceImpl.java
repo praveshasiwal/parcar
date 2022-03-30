@@ -17,6 +17,7 @@ public class VehicleServiceImpl implements VehicleService {
 	private VehicleRepository vehicleRepository;
 
 	@Override
+	@Transactional
 	public VehicleEntity getVehicleEntity(int vehicleNumber) {
 
 		if (0 != vehicleNumber) {
@@ -29,18 +30,21 @@ public class VehicleServiceImpl implements VehicleService {
 	}
 
 	@Override
+	@Transactional
 	public List<VehicleEntity> list() {
 
 		return (List<VehicleEntity>) vehicleRepository.findAll();
 	}
 
 	@Override
+	@Transactional
 	public VehicleEntity save(VehicleEntity vehicleEntity) {
 
 		return vehicleRepository.save(vehicleEntity);
 	}
 
 	@Override
+	@Transactional
 	public VehicleEntity update(int vehicleNumber, VehicleEntity initialVehicleEntity) {
 		if (initialVehicleEntity.getVehicleNumber() != 0) {
 			Optional<VehicleEntity> optionalVehicleEntity = vehicleRepository.findByVehicleNumber(vehicleNumber);
