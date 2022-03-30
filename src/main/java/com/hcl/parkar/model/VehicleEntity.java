@@ -6,6 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -26,6 +27,9 @@ public class VehicleEntity implements Serializable {
 	@ManyToOne
 	@JoinColumn(name = "userId")
 	private UserEntity user;
+	
+	@OneToOne
+	private SlotEntity slot;
 
 	public int getVehicleNumber() {
 		return vehicleNumber;
@@ -57,6 +61,14 @@ public class VehicleEntity implements Serializable {
 
 	public void setVehicleState(String vehicleState) {
 		this.vehicleState = vehicleState;
+	}
+
+	public SlotEntity getSlot() {
+		return slot;
+	}
+
+	public void setSlot(SlotEntity slot) {
+		this.slot = slot;
 	}
 
 	@Override
