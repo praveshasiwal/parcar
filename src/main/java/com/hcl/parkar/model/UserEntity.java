@@ -34,8 +34,8 @@ public class UserEntity implements Serializable {
 	private String password;
 	@Column(name = "license_id", nullable = true, length = 40)
 	private long licenseId;
-	@ManyToMany(mappedBy = "users")
-	private List<VehicleEntity> vehicleList = new ArrayList<VehicleEntity>();
+	// @ManyToMany(mappedBy = "users")
+	// private List<VehicleEntity> vehicleList = new ArrayList<VehicleEntity>();
 	
 	@OneToMany(mappedBy = "userEntity")
 	private List<VehicleEntity> vehicleList = new ArrayList<VehicleEntity>();
