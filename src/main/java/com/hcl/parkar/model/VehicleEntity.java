@@ -28,7 +28,8 @@ public class VehicleEntity implements Serializable {
     @JoinColumn(name= "User_ID")
     private UserEntity userEntity;
     @OneToOne
-    private BookingEntity booking;
+    private SlotEntity slot;
+   
     public int getVehicleNumber() {
         return vehicleNumber;
     }
@@ -53,13 +54,14 @@ public class VehicleEntity implements Serializable {
     public void setVehicleState(String vehicleState) {
         this.vehicleState = vehicleState;
     }
-    public BookingEntity getBooking() {
-        return booking;
-    }
-    public void setBookings(BookingEntity booking) {
-        this.booking = booking;
-    }
-    @Override
+    
+    public SlotEntity getSlot() {
+		return slot;
+	}
+	public void setSlot(SlotEntity slot) {
+		this.slot = slot;
+	}
+	@Override
     public String toString() {
         return "VehicleEntity [vehicleNumber=" + vehicleNumber + ", vehicleCategory=" + vehicleCategory
                 + ", vehicleCity=" + vehicleCity + ", vehicleState=" + vehicleState + "]";

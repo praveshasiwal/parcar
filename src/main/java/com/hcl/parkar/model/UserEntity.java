@@ -37,7 +37,7 @@ public class UserEntity implements Serializable {
 	// @ManyToMany(mappedBy = "users")
 	// private List<VehicleEntity> vehicleList = new ArrayList<VehicleEntity>();
 	
-	@OneToMany(mappedBy = "userEntity")
+	@OneToMany(mappedBy = "vehicleEntity")
 	private List<VehicleEntity> vehicleList = new ArrayList<VehicleEntity>();
 	
 	private VehicleEntity vehicleEntity;
@@ -93,6 +93,14 @@ public class UserEntity implements Serializable {
 	public String getPassword() {
         return password;
     }
+
+	public VehicleEntity getVehicleEntity() {
+		return vehicleEntity;
+	}
+
+	public void setVehicleEntity(VehicleEntity vehicleEntity) {
+		this.vehicleEntity = vehicleEntity;
+	}
 
 	@Override
 	public String toString() {
