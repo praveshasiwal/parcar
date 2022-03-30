@@ -34,9 +34,6 @@ public class UserEntity implements Serializable {
 	private String password;
 	@Column(name = "license_id", nullable = true, length = 40)
 	private long licenseId;
-	
-	@OneToMany(mappedBy = "users")
-	private List<VehicleEntity> vehicleList = new ArrayList<VehicleEntity>();
 
 	public long getId() {
 		return id;
@@ -108,4 +105,5 @@ public class UserEntity implements Serializable {
 				+ ", email=" + email + ", mobileNumber=" + mobileNumber + ", password=" + password + ", licenseId="
 				+ licenseId + "]";
 	}
+
 }

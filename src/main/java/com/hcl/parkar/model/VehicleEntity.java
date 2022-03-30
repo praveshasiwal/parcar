@@ -1,10 +1,13 @@
 package com.hcl.parkar.model;
 
 import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -25,11 +28,11 @@ public class VehicleEntity implements Serializable {
 	private String vehicleState;
 
 	@ManyToOne
-	@JoinColumn(name = "userId")
-	private UserEntity user;
-	
+	@JoinColumn(name = "User_ID")
+	private UserEntity userEntity;
+
 	@OneToOne
-	private SlotEntity slot;
+	private BookingEntity booking;
 
 	public int getVehicleNumber() {
 		return vehicleNumber;
@@ -63,12 +66,12 @@ public class VehicleEntity implements Serializable {
 		this.vehicleState = vehicleState;
 	}
 
-	public SlotEntity getSlot() {
-		return slot;
+	public BookingEntity getBooking() {
+		return booking;
 	}
 
-	public void setSlot(SlotEntity slot) {
-		this.slot = slot;
+	public void setBookings(BookingEntity booking) {
+		this.booking = booking;
 	}
 
 	@Override
