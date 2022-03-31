@@ -17,7 +17,7 @@ import org.springframework.beans.factory.annotation.Value;
 @Table(name = "slot")
 public class SlotEntity implements Serializable {
 	private static final long serialVersionUID = 1L;
-	
+	@Autowired
 	@Id
 	@Column(name = "slot_number", nullable = false, length = 50)
 	private String slotNumber;
@@ -27,7 +27,7 @@ public class SlotEntity implements Serializable {
 	@Value("true")
 	private Boolean slotAvailability;
 
-	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "vehicle")
+	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	private VehicleEntity vehicle;
 
 	public String getSlotNumber() {

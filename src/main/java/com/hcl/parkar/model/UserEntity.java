@@ -3,12 +3,12 @@ package com.hcl.parkar.model;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
@@ -34,13 +34,9 @@ public class UserEntity implements Serializable {
 	private String password;
 	@Column(name = "license_id", nullable = true, length = 40)
 	private long licenseId;
-	// @ManyToMany(mappedBy = "users")
-	// private List<VehicleEntity> vehicleList = new ArrayList<VehicleEntity>();
-	
-	@OneToMany(mappedBy = "vehicleEntity")
+
+	@OneToMany(mappedBy = "userEntity")
 	private List<VehicleEntity> vehicleList = new ArrayList<VehicleEntity>();
-	
-	private VehicleEntity vehicleEntity;
 
 	public long getId() {
 		return id;
@@ -91,21 +87,33 @@ public class UserEntity implements Serializable {
 	}
 
 	public String getPassword() {
-        return password;
-    }
-
-	public VehicleEntity getVehicleEntity() {
-		return vehicleEntity;
+		return password;
 	}
 
-	public void setVehicleEntity(VehicleEntity vehicleEntity) {
-		this.vehicleEntity = vehicleEntity;
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	public long getLicenseId() {
+		return licenseId;
+	}
+
+	public void setLicenseId(long licenseId) {
+		this.licenseId = licenseId;
+	}
+
+	public List<VehicleEntity> getVehicleList() {
+		return vehicleList;
+	}
+
+	public void setVehicleList(List<VehicleEntity> vehicleList) {
+		this.vehicleList = vehicleList;
 	}
 
 	@Override
 	public String toString() {
 		return "UserEntity [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", userName=" + userName
 				+ ", email=" + email + ", mobileNumber=" + mobileNumber + ", password=" + password + ", licenseId="
-				+ licenseId + ", vehicleList=" + vehicleList + ", vehicleEntity=" + vehicleEntity + "]";
+				+ licenseId + ", vehicleList=" + vehicleList + "]";
 	}
-	}
+}

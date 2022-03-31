@@ -11,7 +11,6 @@ import javax.persistence.Id;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
-
 @Entity
 @Table(name = "booking")
 
@@ -31,7 +30,6 @@ public class BookingEntity implements Serializable {
 	@Column(name = "duration", nullable = false, length = 15)
 	private int duration;
 
-	
 	enum BookingStatus {
 		Inprogress, Completed;
 	}
@@ -70,7 +68,5 @@ public class BookingEntity implements Serializable {
 	public void setDuration(int duration) {
 		this.duration = duration;
 	}
-
-	
 
 }
