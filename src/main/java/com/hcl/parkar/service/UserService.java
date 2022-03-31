@@ -16,4 +16,6 @@ public interface UserService {
 
 	public Boolean delete(Long id);
 
+	public UserEntity getByUserNameAndPassword(String username, String password);
+
 }

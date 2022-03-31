@@ -44,6 +44,7 @@ public class BookingServiceImpl implements BookingService {
 
 		return bookingRepository.save(bookingEntity);
 	}
+
 	@Override
 	@Transactional
 	public BookingEntity update(int bookingId, BookingEntity initialBookingEntity) {
@@ -53,7 +54,6 @@ public class BookingServiceImpl implements BookingService {
 				BookingEntity bookingEntity = optionalBookingEntity.get();
 				bookingEntity.setStartTime(initialBookingEntity.getStartTime());
 				bookingEntity.setEndTime(initialBookingEntity.getEndTime());
-				
 
 				return bookingRepository.save(bookingEntity);
 			}

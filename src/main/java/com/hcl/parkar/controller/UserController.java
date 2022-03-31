@@ -3,7 +3,6 @@ package com.hcl.parkar.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.security.SecurityProperties.User;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -11,8 +10,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+
 import com.hcl.parkar.model.UserEntity;
 import com.hcl.parkar.service.UserService;
+
 @Controller
 @RequestMapping("v1/api/user")
 public class UserController {
@@ -52,6 +53,19 @@ public class UserController {
 	public ResponseEntity<List<UserEntity>> list() {
 		List<UserEntity> userResults = userService.list();
 		ResponseEntity<List<UserEntity>> responseEntity = new ResponseEntity<>(userResults, HttpStatus.OK);
+		return responseEntity;
+	}
+
+	@RequestMapping(value = "/login", method = RequestMethod.POST, consumes = "application/json", produces = "application/json")
+	public ResponseEntity<UserEntity> login(@RequestBody UserEntity userEntity) {
+
+		if (null != userEntity && userEntity.getPassword().length() < 8) {
+			throw new RuntimeException("Password Length Should be more than 8 characters");
+		}
+
+		UserEntity userResult = userService.getByUserNameAndPassword(userEntity.getUserName(),
+				userEntity.getPassword());
+		ResponseEntity<UserEntity> responseEntity = new ResponseEntity<>(userResult, HttpStatus.OK);
 		return responseEntity;
 	}
 }

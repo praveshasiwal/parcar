@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import com.hcl.parkar.dao.VehicleRepository;
 import com.hcl.parkar.model.VehicleEntity;
 import com.hcl.parkar.service.VehicleService;
+
 @Service
 public class VehicleServiceImpl implements VehicleService {
 	@Autowired

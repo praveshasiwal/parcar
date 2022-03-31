@@ -42,7 +42,7 @@ public class UserServiceImpl implements UserService {
 	@Override
 	@Transactional
 	public UserEntity save(UserEntity userEntity) {
-        userEntity.setUserName(String.valueOf(userEntity.getMobileNumber()));
+		userEntity.setUserName(String.valueOf(userEntity.getMobileNumber()));
 		return userRepository.save(userEntity);
 	}
 
@@ -78,6 +78,19 @@ public class UserServiceImpl implements UserService {
 		}
 		return false;
 
+	}
+
+	@Override
+	public UserEntity getByUserNameAndPassword(String username, String password) {
+		Optional<UserEntity> optionalEntity = userRepository.findByUserName(username);
+		if (optionalEntity.isPresent()) {
+			UserEntity userEntity = optionalEntity.get();
+			if (userEntity.getPassword().equals(password)) {
+				userEntity.setPassword(null);
+				return userEntity;
+			}
+		}
+		return null;
 	}
 
 }
