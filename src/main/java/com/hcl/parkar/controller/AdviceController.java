@@ -23,7 +23,7 @@ public class AdviceController {
 
 	@ExceptionHandler(value = IOException.class)
 	public ResponseEntity<String> IoException(Exception e) {
-		ResponseEntity<String> responseEntity = new ResponseEntity<String>("There is a Cusotm-Exception",
+		ResponseEntity<String> responseEntity = new ResponseEntity<String>("There is a Custom-Exception",
 				HttpStatus.METHOD_NOT_ALLOWED);
 		return responseEntity;
 	}
