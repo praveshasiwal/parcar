@@ -8,7 +8,6 @@ import com.hcl.parkar.dao.SlotRepository;
 import com.hcl.parkar.model.SlotEntity;
 import com.hcl.parkar.service.SlotService;
 
-
 @Service
 public class SlotServiceImpl implements SlotService {
 	@Autowired
@@ -25,11 +24,13 @@ public class SlotServiceImpl implements SlotService {
 		}
 		return null;
 	}
-@Override
+
+	@Override
 	public List<SlotEntity> list() {
 		return (List<SlotEntity>) slotRepository.findAll();
 	}
-@Override
+
+	@Override
 	public SlotEntity save(SlotEntity slotEntity) {
 		return slotRepository.save(slotEntity);
 	}
@@ -49,7 +50,8 @@ public class SlotServiceImpl implements SlotService {
 		}
 		return null;
 	}
-@Override
+
+	@Override
 	public Boolean delete(String slotNumber) {
 		if (null != slotNumber) {
 			Optional<SlotEntity> slotEntity = slotRepository.findBySlotNumber(slotNumber);
@@ -61,5 +63,4 @@ public class SlotServiceImpl implements SlotService {
 		return false;
 	}
 
-	
 }

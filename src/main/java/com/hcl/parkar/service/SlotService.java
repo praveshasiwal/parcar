@@ -6,7 +6,6 @@ import com.hcl.parkar.model.SlotEntity;
 
 public interface SlotService {
 
-
 	public SlotEntity getSlotEntity(String slotNumber);
 
 	public List<SlotEntity> list();

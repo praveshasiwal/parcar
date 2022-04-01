@@ -2,9 +2,12 @@ package com.hcl.parkar.service.impl;
 
 import java.util.List;
 import java.util.Optional;
+
 import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 import com.hcl.parkar.dao.UserRepository;
 import com.hcl.parkar.model.UserEntity;
 import com.hcl.parkar.service.UserService;
@@ -77,5 +80,18 @@ public class UserServiceImpl implements UserService {
 
 	}
 
-}
+	@Override
+	public UserEntity getByUserNameAndPassword(String username , String Password) {
+		Optional<UserEntity> optionalEntity = userRepository.findByUserName(username);
+		if(optionalEntity.isPresent()) {
+			UserEntity userEntity = optionalEntity.get();
+			if(userEntity.getPassword().equals(Password)) {
+				userEntity.setPassword(null);
+				return userEntity;
+			}
+		
+		}
+		return null;
+	}
 
+}
