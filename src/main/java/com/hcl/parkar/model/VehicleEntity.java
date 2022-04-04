@@ -28,9 +28,6 @@ public class VehicleEntity implements Serializable {
 	private String vehicleCity;
 	@Column(name = "vehicle_State", nullable = false, length = 50)
 	private String vehicleState;
-	
-
-
 	@ManyToOne
 	@JoinColumn(name= "User_ID")
 	private UserEntity userEntity;
@@ -83,7 +80,4 @@ public class VehicleEntity implements Serializable {
 		return "VehicleEntity [vehicleNumber=" + vehicleNumber + ", vehicleCategory=" + vehicleCategory
 				+ ", vehicleCity=" + vehicleCity + ", vehicleState=" + vehicleState + "]";
 	}
-
-
-
 }

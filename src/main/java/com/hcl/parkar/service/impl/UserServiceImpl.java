@@ -52,7 +52,7 @@ public class UserServiceImpl implements UserService {
 	@Transactional
 	public UserEntity save(UserEntity userEntity) {
 		userEntity.setUserName(String.valueOf(userEntity.getMobileNumber()));
-		//userEntity.setPassword(passwordEncoder.encode(userEntity.getPassword()));
+
 		return userRepository.save(userEntity);
 	}
 

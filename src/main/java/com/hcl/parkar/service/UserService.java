@@ -15,7 +15,7 @@ public interface UserService {
 	public UserEntity update(String username, UserEntity userEntity);
 
 	public Boolean delete(Long id);
-    
-	public UserEntity  getByUserNameAndPassword(String username, String password);
-	
+
+	public UserEntity getByUserNameAndPassword(String username, String password);
+
 }
