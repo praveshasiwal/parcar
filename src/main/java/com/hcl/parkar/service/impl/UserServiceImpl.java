@@ -6,9 +6,11 @@ import java.util.Optional;
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+//import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.hcl.parkar.dao.UserRepository;
+import com.hcl.parkar.exception.NoDataFoundException;
 import com.hcl.parkar.model.UserEntity;
 import com.hcl.parkar.service.UserService;
 
@@ -17,6 +19,9 @@ public class UserServiceImpl implements UserService {
 
 	@Autowired
 	private UserRepository userRepository;
+
+//	@Autowired
+//	private PasswordEncoder passwordEncoder;
 
 	@Override
 	@Transactional
@@ -36,13 +41,18 @@ public class UserServiceImpl implements UserService {
 	@Transactional
 	public List<UserEntity> list() {
 
-		return (List<UserEntity>) userRepository.findAll();
+		List userEntity = (List<UserEntity>) userRepository.findAll();
+		if (userEntity.isEmpty()) {
+			throw new NoDataFoundException();
+		}
+		return userEntity;
 	}
 
 	@Override
 	@Transactional
 	public UserEntity save(UserEntity userEntity) {
-        userEntity.setUserName(String.valueOf(userEntity.getMobileNumber()));
+		userEntity.setUserName(String.valueOf(userEntity.getMobileNumber()));
+		//userEntity.setPassword(passwordEncoder.encode(userEntity.getPassword()));
 		return userRepository.save(userEntity);
 	}
 
@@ -78,6 +88,19 @@ public class UserServiceImpl implements UserService {
 		}
 		return false;
 
+	}
+
+	@Override
+	public UserEntity getByUserNameAndPassword(String username, String password) {
+		Optional<UserEntity> optionalEntity = userRepository.findByUserName(username);
+		if (optionalEntity.isPresent()) {
+			UserEntity userEntity = optionalEntity.get();
+			if (userEntity.getPassword().equals(password)) {
+				userEntity.setPassword(null);
+				return userEntity;
+			}
+		}
+		return null;
 	}
 
 }
