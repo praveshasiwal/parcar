@@ -1,12 +1,13 @@
 package com.hcl.parkar.service.impl;
 
+import java.util.Base64;
+import java.util.Base64.Encoder;
 import java.util.List;
 import java.util.Optional;
 
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-//import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.hcl.parkar.dao.UserRepository;
@@ -19,9 +20,6 @@ public class UserServiceImpl implements UserService {
 
 	@Autowired
 	private UserRepository userRepository;
-
-//	@Autowired
-//	private PasswordEncoder passwordEncoder;
 
 	@Override
 	@Transactional
@@ -52,7 +50,6 @@ public class UserServiceImpl implements UserService {
 	@Transactional
 	public UserEntity save(UserEntity userEntity) {
 		userEntity.setUserName(String.valueOf(userEntity.getMobileNumber()));
-
 		return userRepository.save(userEntity);
 	}
 
@@ -95,11 +92,9 @@ public class UserServiceImpl implements UserService {
 		Optional<UserEntity> optionalEntity = userRepository.findByUserName(username);
 		if (optionalEntity.isPresent()) {
 			UserEntity userEntity = optionalEntity.get();
-			if (userEntity.getPassword().equals(password)) {
-				userEntity.setPassword(null);
-				return userEntity;
-			}
+			return userEntity;
 		}
+
 		return null;
 	}
 
