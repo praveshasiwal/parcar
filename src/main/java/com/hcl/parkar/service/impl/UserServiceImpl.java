@@ -1,7 +1,5 @@
 package com.hcl.parkar.service.impl;
 
-import java.util.Base64;
-import java.util.Base64.Encoder;
 import java.util.List;
 import java.util.Optional;
 
@@ -14,6 +12,7 @@ import com.hcl.parkar.dao.UserRepository;
 import com.hcl.parkar.exception.NoDataFoundException;
 import com.hcl.parkar.model.UserEntity;
 import com.hcl.parkar.service.UserService;
+import com.hcl.parkar.util.PasswordUtility;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -50,6 +49,7 @@ public class UserServiceImpl implements UserService {
 	@Transactional
 	public UserEntity save(UserEntity userEntity) {
 		userEntity.setUserName(String.valueOf(userEntity.getMobileNumber()));
+		userEntity.setPassword(PasswordUtility.toHexString(userEntity.getPassword()));		
 		return userRepository.save(userEntity);
 	}
 
