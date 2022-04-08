@@ -2,7 +2,7 @@ package com.hcl.parkar.model;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
-import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -10,6 +10,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateTimeDeserializer;
 
 
 @Entity
@@ -22,10 +26,16 @@ public class BookingEntity implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int bookingId;
 
-	@Column(name = "start_time", nullable = false, length = 15)
+	
+	
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")
+	@JsonDeserialize(using = LocalDateTimeDeserializer.class)
+	@Column(name = "start_time", nullable = false)
 	private LocalDateTime startTime;
 
-	@Column(name = "end_time", nullable = false, length = 15)
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")
+	@JsonDeserialize(using = LocalDateTimeDeserializer.class)
+	@Column(name = "end_time", nullable = false)
 	private LocalDateTime endTime;
 
 	@Column(name = "duration", nullable = false, length = 15)
