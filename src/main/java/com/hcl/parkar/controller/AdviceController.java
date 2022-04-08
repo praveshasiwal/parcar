@@ -7,6 +7,7 @@ import org.springframework.web.HttpRequestMethodNotSupportedException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
+import com.hcl.parkar.constant.ParkarConstant;
 import com.hcl.parkar.exception.ParKarException;
 
 @ControllerAdvice
@@ -27,7 +28,12 @@ public class AdviceController {
 	
 	@ExceptionHandler(value = ParKarException.class)
 	public ResponseEntity<String> runtimeException(ParKarException parKarException) {
-		ResponseEntity<String> responseEntity = new ResponseEntity<String>(parKarException.getMessage(), HttpStatus.UNPROCESSABLE_ENTITY);
+		ResponseEntity<String> responseEntity = null;
+		if(ParkarConstant.userNotFound.equals(parKarException.getMessage())) {
+			responseEntity = new ResponseEntity<String>(parKarException.getMessage(), HttpStatus.UNAUTHORIZED);
+		}else {
+			responseEntity = new ResponseEntity<String>(parKarException.getMessage(), HttpStatus.UNPROCESSABLE_ENTITY);
+		}
 		return responseEntity;
 	}
 
