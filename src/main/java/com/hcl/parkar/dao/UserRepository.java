@@ -9,7 +9,7 @@ import com.hcl.parkar.model.UserEntity;
 
 @Repository
 public interface UserRepository extends CrudRepository<UserEntity, Long> {
-
+	
 	Optional<UserEntity> findByUserName(String userName);
 
 }

@@ -1,5 +1,7 @@
 package com.hcl.parkar.service.impl;
 
+import com.hcl.parkar.constant.ParkarConstant;
+
 import java.util.List;
 import java.util.Optional;
 
@@ -9,8 +11,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.hcl.parkar.dao.UserRepository;
+import com.hcl.parkar.exception.NoDataFoundException;
+import com.hcl.parkar.exception.ParKarException;
 import com.hcl.parkar.model.UserEntity;
 import com.hcl.parkar.service.UserService;
+import com.hcl.parkar.util.PasswordUtility;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -36,13 +41,18 @@ public class UserServiceImpl implements UserService {
 	@Transactional
 	public List<UserEntity> list() {
 
-		return (List<UserEntity>) userRepository.findAll();
+		List<UserEntity> userEntity = (List<UserEntity>) userRepository.findAll();
+		if (userEntity.isEmpty()) {
+			throw new NoDataFoundException();
+		}
+		return userEntity;
 	}
 
 	@Override
 	@Transactional
 	public UserEntity save(UserEntity userEntity) {
 		userEntity.setUserName(String.valueOf(userEntity.getMobileNumber()));
+		userEntity.setPassword(PasswordUtility.toHexString(userEntity.getPassword()));
 		return userRepository.save(userEntity);
 	}
 
@@ -85,12 +95,13 @@ public class UserServiceImpl implements UserService {
 		Optional<UserEntity> optionalEntity = userRepository.findByUserName(username);
 		if (optionalEntity.isPresent()) {
 			UserEntity userEntity = optionalEntity.get();
-			if (userEntity.getPassword().equals(password)) {
+			String encodedPassword = PasswordUtility.toHexString(password);
+			if (userEntity.getPassword().equals(encodedPassword)) {
 				userEntity.setPassword(null);
 				return userEntity;
 			}
 		}
-		return null;
+		throw new ParKarException(ParkarConstant.userNotFound);
 	}
 
 }

@@ -55,17 +55,13 @@ public class UserController {
 		ResponseEntity<List<UserEntity>> responseEntity = new ResponseEntity<>(userResults, HttpStatus.OK);
 		return responseEntity;
 	}
-
 	@RequestMapping(value = "/login", method = RequestMethod.POST, consumes = "application/json", produces = "application/json")
 	public ResponseEntity<UserEntity> login(@RequestBody UserEntity userEntity) {
-
-		if (null != userEntity && userEntity.getPassword().length() < 8) {
-			throw new RuntimeException("Password Length Should be more than 8 characters");
+		if(null != userEntity && userEntity.getPassword().length() < 8 ) {
+			throw new RuntimeException("Password length should be more than");
 		}
-
-		UserEntity userResult = userService.getByUserNameAndPassword(userEntity.getUserName(),
-				userEntity.getPassword());
-		ResponseEntity<UserEntity> responseEntity = new ResponseEntity<>(userResult, HttpStatus.OK);
-		return responseEntity;
+	UserEntity userResult =userService.getByUserNameAndPassword(userEntity.getUserName(), userEntity.getPassword());
+	ResponseEntity<UserEntity> responseEntity = new ResponseEntity<>(userResult, HttpStatus.OK);
+     return responseEntity;
 	}
 }
